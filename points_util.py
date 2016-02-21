@@ -14,9 +14,9 @@ def detect_points(message):
 def detect_point_polarity(message):
 	"""Discern whether this is a point awarding or deduction"""
 	message = clean(message)
-	if "points to" or "points for" in message:
+	if any(x in message for x in ["points to", "point to", "point for", "points for"]):
 		return 1
-	elif "points from" in message:
+	elif any(x in message for x in ["points from", "point from"]):
 		return -1
 	else:
 		return 0
