@@ -48,6 +48,7 @@ def image_for_scores(scores, upload=True):
 
     outfile = str(abs(hash(str(scores)))) + '.png'
     points_image.save(outfile, "PNG")
+    del points_image
     return outfile
 
 
