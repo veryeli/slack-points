@@ -6,6 +6,8 @@ def clean(message):
 
 def detect_points(message):
 	amounts = re.findall(r'\d+', clean(message))
+	if len(amounts) == 0 and 'one' in clean(message):
+		amounts = [1]
 	if len(amounts) == 1:
 		return int(amounts[0]) * detect_point_polarity(message)
 	else:
