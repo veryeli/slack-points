@@ -25,7 +25,7 @@ def proper_name_for(house):
 	"""Forgive house misspelling"""
 	if "raven" in house:
 		return "Ravenclaw"
-	if "huffle" in house:
+	if "huff" in house:
 		return "Hufflepuff"
 	if "gryf" in house:
 		return "Gryffendor"
