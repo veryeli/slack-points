@@ -19,9 +19,9 @@ nth = {
 class PointCounter(object):
     def __init__(self, prefects=PREFECTS, announcers=ANNOUNCERS):
         try:
-        	self.points = pickle.load(open(POINTS_FILE, 'rb'))
+            self.points = pickle.load(open(POINTS_FILE, 'rb'))
         except:
-        	self.points = Counter()
+            self.points = Counter()
         self.prefects = prefects
         self.announcers = announcers
 
@@ -53,13 +53,13 @@ class PointCounter(object):
 
 
 def is_hogwarts_related(message):
-	return (
-		message["type"] == "message" and
-		message["channel"] == CHANNEL and
-		"text" in message and
-		"user" in message and
-		"point" in message["text"] and
-		points_util.get_houses_from(message["text"]))
+    return (
+        message["type"] == "message" and
+        message["channel"] == CHANNEL and
+        "text" in message and
+        "user" in message and
+        "point" in message["text"] and
+        points_util.get_houses_from(message["text"]))
 
 def main():
     sc = SlackClient(SLACK_TOKEN)
@@ -69,15 +69,15 @@ def main():
             messages = sc.rtm_read()
             for message in messages:
                 if 'text' in message:
-                	print points_util.get_houses_from(message["text"])
+                    print points_util.get_houses_from(message["text"])
                 if is_hogwarts_related(message):
                     print 'is_hogwarts_related'
                     for m in p.award_points(message['text'], message['user']):
-                    	sc.api_call(
-                    		"chat.postMessage", channel=CHANNEL, text=m)
+                        sc.api_call(
+                            "chat.postMessage", channel=CHANNEL, text=m)
                     os.system(
-                    	"curl -F file=@%s -F title=%s -F channels=%s -F token=%s https://slack.com/api/files.upload"
-                    	 % (cup_image.image_for_scores(p.points), '"House Points"', CHANNEL, SLACK_TOKEN))
+                        "curl -F file=@%s -F title=%s -F channels=%s -F token=%s https://slack.com/api/files.upload"
+                         % (cup_image.image_for_scores(p.points), '"House Points"', CHANNEL, SLACK_TOKEN))
 
 
                 time.sleep(1)
@@ -86,4 +86,4 @@ def main():
 
 
 if __name__ == "__main__":
-	main()
+    main()
