@@ -4,6 +4,11 @@ def clean(message):
     """Standardize spacing and capitalization"""
     return ' '.join(m.lower() for m in message.split() if m)
 
+def pluralized_points(num_points):
+    if num_points == 1 or num_points == -1:
+        return "%d point" % num_points
+    return "%d points" % num_points
+
 def detect_points(message):
     amounts = re.findall(r'\d+', clean(message))
     if len(amounts) == 0 and 'one' in clean(message):

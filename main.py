@@ -17,13 +17,15 @@ nth = {
 }
 
 class PointCounter(object):
-    def __init__(self, prefects=PREFECTS, announcers=ANNOUNCERS):
+    def __init__(self, prefects=PREFECTS,
+                 announcers=ANNOUNCERS, points_file=POINTS_FILE):
         try:
-            self.points = pickle.load(open(POINTS_FILE, 'rb'))
+            self.points = pickle.load(open(points_file, 'rb'))
         except:
             self.points = Counter()
         self.prefects = prefects
         self.announcers = announcers
+        self.points_file = points_file
 
     def get_points_from(self, message, awarder):
         amount = points_util.detect_points(message)
@@ -34,17 +36,22 @@ class PointCounter(object):
 
     @staticmethod
     def message_for(house, points):
-        return "%s gets %d point%s" % (house, points, '' if points in [-1, 1] else 's')
+        if points > 0:
+            return "%s gets %s" % (
+                house, points_util.pluralized_points(points))
+        return "%s loses %s" % (
+            house, points_util.pluralized_points(abs(points)))
 
     def award_points(self, message, awarder):
         points = self.get_points_from(message, awarder)
         houses = points_util.get_houses_from(message)
+        messages = []
         if points and houses:
             for house in houses:
                 self.points[house] += points
-                pickle.dump(self.points, open(POINTS_FILE, 'wb'))
-                print self.points
-                yield self.message_for(house, points)
+                pickle.dump(self.points, open(self.points_file, 'wb'))
+                messages.append(self.message_for(house, points))
+        return messages
 
     def print_status(self):
         for place, (house, points) in enumerate(sorted(self.points.items(), key=lambda x: x[-1])):
