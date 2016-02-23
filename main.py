@@ -75,8 +75,6 @@ def main():
         while True:
             messages = sc.rtm_read()
             for message in messages:
-                if 'text' in message:
-                    print points_util.get_houses_from(message["text"])
                 if is_hogwarts_related(message):
                     print 'is_hogwarts_related'
                     for m in p.award_points(message['text'], message['user']):
