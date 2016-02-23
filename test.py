@@ -29,6 +29,14 @@ class TestPointCounter(unittest.TestCase):
         for m in msg:
             self.assertEqual(m, "Gryffendor gets 1 point")
 
+    def test_adding_one_point_to_slytherin(self):
+        p = PointCounter(TEST_PREFECTS, points_file=TEST_POINTS)
+        msg = p.award_points(
+            "1 point to slytherin for @benkraft making slackbot"
+            " listen for '911' mentions in 1s and 0s", "harry potter")
+        for m in msg:
+            self.assertEqual(m, "Slytherin gets 1 point")
+
     def test_subtracting_one_point(self):
         p = PointCounter(TEST_PREFECTS, points_file=TEST_POINTS)
         msg = p.award_points("oNe point from Gryffendor", "harry potter")
