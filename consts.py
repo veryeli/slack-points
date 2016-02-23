@@ -1,4 +1,4 @@
-HOUSES = ["Ravenclaw", "Hufflepuff", "Gryffindor", "Slytherin"]
+HOUSES = ["Ravenclaw", "Hufflepuff", "Gryffendor", "Slytherin"]
 SLACK_TOKEN = 'your_token_here'
 # only prefects can add and remove multiple points
 PREFECTS = ["your_slack_id_here", "someone_elses_here"]
