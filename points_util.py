@@ -10,9 +10,8 @@ def pluralized_points(num_points):
     return "%d points" % num_points
 
 def detect_points(message):
-    amounts = [
-        amount for amount in re.findall(r'\d+', clean(message))
-        if amount.isdigit()]
+    amounts = [amount for amount in clean(message).split()
+               if amount.isdigit()]
     if len(amounts) == 0 and 'one' in clean(message):
         amounts = [1]
     if len(amounts) == 1:

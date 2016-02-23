@@ -45,7 +45,7 @@ class TestPointCounter(unittest.TestCase):
     def test_works_with_usernames(self):
         message = "1 point to ravenclaw <@U0NJ1PH1R>"
         for m in self.p.award_points(message, "nymphadora tonks"):
-            self.assertEqual("m", "Ravenclaw gets one point")
+            self.assertEqual(m, "Ravenclaw gets 1 point")
 
     def test_calculate_standings(self):
         p = PointCounter(TEST_PREFECTS, points_file=TEST_POINTS)
