@@ -7,14 +7,14 @@ BAR_BOTTOM = 947
 BAR_HEIGHT = 650
 
 BAR_X = {
-    "Gryffendor": 306,
+    "Gryffindor": 306,
     "Hufflepuff": 551,
     "Slytherin": 806,
     "Ravenclaw": 1043,
 }
 
 BAR_COLOR = {
-    "Gryffendor": "#ff0000",
+    "Gryffindor": "#ff0000",
     "Ravenclaw": "#0000ff",
     "Hufflepuff": "#ffff00",
     "Slytherin": "#00ff00",

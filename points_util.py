@@ -36,7 +36,7 @@ def proper_name_for(house):
     if "huff" in house:
         return "Hufflepuff"
     if "gryf" in house:
-        return "Gryffendor"
+        return "Gryffindor"
     if "slyt" in house:
         return "Slytherin"
 

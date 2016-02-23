@@ -15,21 +15,21 @@ class TestPointCounter(unittest.TestCase):
 
     def test_adding_points(self):
         p = PointCounter(TEST_PREFECTS, points_file=TEST_POINTS)
-        msg = p.award_points("6 points to Gryffendor", TEST_PREFECTS[0])
+        msg = p.award_points("6 points to Gryffindor", TEST_PREFECTS[0])
         for m in msg:
-            self.assertEqual(m,"Gryffendor gets 6 points")
+            self.assertEqual(m,"Gryffindor gets 6 points")
 
     def test_adding_points_not_by_prefect(self):
         p = PointCounter(TEST_PREFECTS, points_file=TEST_POINTS)
-        msg = p.award_points("6 points to Gryffendor", "harry potter")
+        msg = p.award_points("6 points to Gryffindor", "harry potter")
         for m in msg:
-            self.assertEqual(m, "Gryffendor gets 1 point")
+            self.assertEqual(m, "Gryffindor gets 1 point")
 
     def test_adding_one_point(self):
         p = PointCounter(TEST_PREFECTS, points_file=TEST_POINTS)
-        msg = p.award_points("oNe point to Gryffendor", "harry potter")
+        msg = p.award_points("oNe point to Gryffindor", "harry potter")
         for m in msg:
-            self.assertEqual(m, "Gryffendor gets 1 point")
+            self.assertEqual(m, "Gryffindor gets 1 point")
 
     def test_adding_one_point_to_slytherin(self):
         msg = self.p.award_points(
@@ -39,8 +39,8 @@ class TestPointCounter(unittest.TestCase):
             self.assertEqual(m, "Slytherin gets 1 point")
 
     def test_subtracting_one_point(self):
-        for m in self.p.award_points("oNe point from Gryffendor", "harry potter"):
-            self.assertEqual(m, "Gryffendor loses 1 point")
+        for m in self.p.award_points("oNe point from Gryffindor", "harry potter"):
+            self.assertEqual(m, "Gryffindor loses 1 point")
 
     def test_works_with_usernames(self):
         message = "1 point to ravenclaw <@U0NJ1PH1R>"
@@ -49,7 +49,7 @@ class TestPointCounter(unittest.TestCase):
 
     def test_calculate_standings(self):
         p = PointCounter(TEST_PREFECTS, points_file=TEST_POINTS)
-        p.award_points("6 points to Gryffendor", TEST_PREFECTS[0])
+        p.award_points("6 points to Gryffindor", TEST_PREFECTS[0])
         p.award_points("7 points to Ravenclaw", TEST_PREFECTS[0])
         p.award_points("8 points to Hufflepuff", TEST_PREFECTS[0])
         p.award_points("9 points to Slytherin", TEST_PREFECTS[0])

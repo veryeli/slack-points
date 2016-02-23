@@ -21,6 +21,9 @@ class PointCounter(object):
                  announcers=ANNOUNCERS, points_file=POINTS_FILE):
         try:
             self.points = pickle.load(open(points_file, 'rb'))
+            if "Gryffendor" in self.points:
+                self.points["Gryffindor"] = self.point["Gryffendor"]
+            del self.points["Gryffendor"]
         except:
             self.points = Counter()
         self.prefects = prefects
