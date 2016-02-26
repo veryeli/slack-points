@@ -41,4 +41,4 @@ def proper_name_for(house):
         return "Slytherin"
 
 def get_houses_from(message):
-    return [proper_name_for(w) for w in clean(message).split() if proper_name_for(w)]
+    return list(set(proper_name_for(w) for w in clean(message).split() if proper_name_for(w)))
