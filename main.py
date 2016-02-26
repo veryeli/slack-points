@@ -64,8 +64,8 @@ class PointCounter(object):
 
 def is_hogwarts_related(message):
     return (
-        message["type"] == "message" and
-        message["channel"] == CHANNEL and
+        message.get("type", '') == "message" and
+        message.get("channel", '') == CHANNEL and
         "text" in message and
         "user" in message and
         "point" in message["text"] and
