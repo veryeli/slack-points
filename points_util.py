@@ -1,5 +1,3 @@
-import re
-
 def clean(message):
     """Standardize spacing and capitalization"""
     return ' '.join(m.lower() for m in message.split() if m)
@@ -42,3 +40,6 @@ def proper_name_for(house):
 
 def get_houses_from(message):
     return list(set(proper_name_for(w) for w in clean(message).split() if proper_name_for(w)))
+
+def get_suits_from(message):
+    return list(set())

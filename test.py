@@ -13,8 +13,9 @@ class TestPointCounter(unittest.TestCase):
     def setUp(self):
         self.p = PointCounter(TEST_PREFECTS, points_file=TEST_POINTS)
 
+
     def test_adding_points(self):
-        p = PointCounter(TEST_PREFECTS, points_file=TEST_POINTS)
+        p = PointCounter(TEST_PREFECTS, TEST_PREFECTS, points_file=TEST_POINTS)
         msg = p.award_points("6 points to Gryffindor", TEST_PREFECTS[0])
         for m in msg:
             self.assertEqual(m,"Gryffindor gets 6 points")
