@@ -107,6 +107,8 @@ class AlicePointCounter(PointCounter):
                 "curl -F file=@%s -F title=%s -F channels=%s -F token=%s https://slack.com/api/files.upload"
                  % (m['file'], m['file_title'], CHANNEL, SLACK_TOKEN))
         if 'hedgehog' in message['text']:
+            self.sc.api_call(
+                "chat.postMessage", channel=CHANNEL, text='\n'.join(["%s: %s" % (k, v) for k, v in self.points.iteritems()]))
             self.print_points()
 
     def award_points(self, message):
